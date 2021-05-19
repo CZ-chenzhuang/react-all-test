@@ -1,0 +1,31 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+#root {
+  .App {
+    // 使用属性值变量
+    color: @color;
+    // 使用属性名或者选择器的变量时，用@{xx}
+    @{m}: 10px;
+    // 选择器变量的使用
+    @{box}{
+      font-size: 16px;
+    }
+    .box {
+      // .flexbox(100px, 100px, #fff)
+      //命名参数混合
+      .flexbox(@b:#fff);
+      @{m}: 10px;
+    }
+    .test-box {
+      .pos(a, 200px, 200px)
+    }
+    .border-box {
+      &:extend(.middle all);
+    }
+    .box {
+      width: ~"calc(100% - 10px)";
+    }
+  }
+}

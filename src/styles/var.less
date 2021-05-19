@@ -1,0 +1,67 @@
+// 变量
+@color: #333;
+@warn: yellow;
+@m: margin;
+@box: .box-left;
+
+// 普通混合（没有参数）、带参数混合、带默认值混合、
+// 命名参数混合（当有默认值，用混合时的参数位置对应不上，可以直接传递一个命名参数）
+// 匹配模式（例子：css画三角型，会有朝上、朝下。可以定义一个匹配模式的混合，将公共的）
+// .flexbox() {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 100px;
+//   height: 100px;
+// }
+
+// .flexbox(@w, @h) {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 100px;
+//   height: 100px;
+// }
+
+
+.flexbox(@w: 100px, @h: 100px, @b: pink) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: @b;
+  width: @w;
+  height: @h;
+}
+
+.pos(a, @t: 0, @l: 0) {
+  position: absolute;
+}
+.pos(r, @t: 0, @l: 0) {
+  position: relative;
+}
+.pos(f, @t: 0, @l: 0) {
+  position: fixed;
+}
+.pos(@_, @t: 0, @l: 0){
+  top: @t;
+  left: @l;
+  width: 100px;
+  height: 100px;
+  background: blue;
+}
+
+.border(@w, @s, @c){
+  border: @arguments;
+}
+
+.middle {
+  width: 100px;
+  height: 100px;
+  font-size: 16px;
+  color: #333;
+  background: pink;
+  text-align: center;
+}
+.middle:hover {
+  background: red;
+}

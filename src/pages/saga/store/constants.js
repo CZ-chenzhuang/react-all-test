@@ -1,0 +1,3 @@
+export const CHANGE_LOADING = 'user/CHANGE_LOADING';
+export const CHANGE_USERINFO = 'user/CHANGE_UESRINFO';
+export const CHANGE_USERINFO_FAILED = 'user/CHANGE_USERINFO_FAILED';

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <h2>hash路由</h2>
+    <ul>
+      <li><a href="/">首页</a></li>
+      <li><a href="/admin">管理</a></li>
+      <li><a href="/app">应用</a></li>
+    </ul>
+    <div id="root"></div>
+
+    <script>
+      let root = document.querySelector('#root');
+
+      /**
+       * hash路由：
+       *  1、主要通过window.onhashchange事件，来监听页面hash的改变，来事件路由。
+      */
+      class HashRouter {
+        constructor() {
+          this.hashChange = this.hashChange.bind(this);
+          window.addEventListener('hashchange', this.hashChange, false);
+          window.addEventListener('load', this.hashChange, false);
+        }
+
+        routes = {};
+
+        hashChange(event) {
+          let newHash = location.hash ? location.hash.slice(1) : '/';
+          let oldHash = '/';
+          if (event.oldURL) {
+            let oldHashIndex = event.oldURL.indexOf('#');
+            if (oldHashIndex >= 0) {
+              oldHash = event.oldURL.slice(oldHashIndex + 1);
+            }
+          }
+          this.refresh(newHash, oldHash);
+        }
+
+        on(hash, listener) {
+          this.routes[hash] = listener;
+        }
+
+        refresh(newHash, oldHash) {
+          let listener = this.routes[newHash];
+          listener && listener(newHash, oldHash);
+        }
+      }
+
+      let hashRouter = new HashRouter();
+      hashRouter.on('/', (...args) => {
+        root.innerText = '首页';
+      })
+      hashRouter.on('/admin', (...args) => {
+        root.innerText = '管理';
+      })
+      hashRouter.on('/app', (...args) => {
+        root.innerText = '应用';
+      })
+
+      /**
+       * history路由：
+       *  1、通过h5新增的history API，pushState和replaceState，来实现页面地址改变，不刷新页面。
+       *  2、window.onpopstate监听路径改变，实现页面内容的切换。
+       *  3、window.onpopstate能监听到history.go/back/forward，调用pushState和replaceState监听不到。
+       *  4、自定义onpushstate和onreplaceState事件。
+       *  5、重写pushState，replaceState方法，在内部去触发onpushstate事件。
+      */
+      class HistoryRouter {
+        constructor() {
+          this.initCustomEvent();
+          this.refresh = this.refresh.bind(this);
+          window.addEventListener('popstate', this.refresh, false);
+          window.addEventListener('pushState', this.refresh, false);
+          window.addEventListener('replaceState', this.refresh, false);
+          window.addEventListener('load', this.refresh, false)
+        }
+
+        routes = {};
+
+        initCustomEvent() {
+          function listener(type) {
+            let api = history[type];
+            let e = new CustomEvent(type)
+            return function(state, title, url) {
+              api.call(this, state, title, url);
+              // 把pushState传递的参数绑定到自定义事件对象上
+              e.state = state;
+              window.dispatchEvent(e);
+            }
+          }
+          window.history.pushState = listener('pushState');
+          window.history.replaceState = listener('replaceState');
+        }
+
+        refresh(e) {
+          let pathname = location.pathname;
+          let listener = this.routes[pathname];
+          let state = e.state;
+          listener(state);
+        }
+
+        on(pathname, listener) {
+          this.routes[pathname] = listener;
+        }
+      }
+
+      let historyRouter = new HistoryRouter();
+      historyRouter.on('/', (...args) => {
+        root.innerText = '首页';
+      })
+      historyRouter.on('/admin', (...args) => {
+        root.innerText = '管理';
+      })
+      historyRouter.on('/app', (...args) => {
+        root.innerText = '应用';
+      })
+    </script>
+</body>
+</html>
