@@ -3,7 +3,7 @@
  * 
  */
 function createStore(reducer, state) {
-  let currentState = state;
+  let currentState = {};
   let listenders = [];
 
   function dispatch(action) {

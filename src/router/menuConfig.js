@@ -11,19 +11,30 @@ const routes = [
     name: '首页',
     exact: true,
     component: Home,
+    // routes: [
+    //   {
+    //     path: '/',
+    //     name: 'ceshisd',
+    //     exact: true,
+    //     component: Home,
+    //   }
+    // ]
   },
   {
     path: '/thunk',
+    name: 'thunk',
     exact: true,
     component: Thunk
   },
   {
     path: '/saga',
+    name: 'saga',
     exact: true,
     component: Saga
   },
   {
     path: '/store',
+    name: 'store',
     exact: true,
     component: Store
   }

@@ -7,7 +7,6 @@ const defaultState = {
 }
 
 export default (state = defaultState, action) => {
-  console.log('pages/thunk/reducer执行')
   switch(action.type){
     case  actionTypes.CHANGE_NAME:
       let newNameState = JSON.parse(JSON.stringify(state));

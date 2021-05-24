@@ -7,7 +7,6 @@ const defaultState = {
 }
 
 export default (state = defaultState, action) => {
-  console.log('pages/saga/reducer执行')
   switch(action.type){
     case  actionTypes.CHANGE_LOADING:
       let newLoadingState = JSON.parse(JSON.stringify(state));

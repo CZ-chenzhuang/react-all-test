@@ -2,6 +2,7 @@ import React from 'react';
 import { HashRouter, BrowserRouter, Link } from 'react-router-dom'
 import RoutesRender from './RouteRender';
 import routes from './menuConfig';
+import Menus from '../components/menus';
 // import { HashRouter, BrowserRouter, Route } from './react-router-dom'
 
 
@@ -36,14 +37,11 @@ import routes from './menuConfig';
  */
 
 const Index = () => {
-  const Menus = () => {
-
-  }
 
   return (
     <BrowserRouter>
       <div className="main-left">
-        1
+        <Menus routes={routes}/>
       </div>
       <div className="main-right">
         <RoutesRender routes={routes}/>
