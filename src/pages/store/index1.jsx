@@ -21,10 +21,9 @@ console.log(store, 'store');
 console.log(store.getState());
 
 
-const Index = () => {
+const Index = (props) => {
   const { num: storeNum } = store.getState()
   const [num, setNum] = useState(storeNum)
-
   useEffect(() => {
     store.subscribe(onAdd)
   }, [])

@@ -11,14 +11,6 @@ const routes = [
     name: '首页',
     exact: true,
     component: Home,
-    // routes: [
-    //   {
-    //     path: '/',
-    //     name: 'ceshisd',
-    //     exact: true,
-    //     component: Home,
-    //   }
-    // ]
   },
   {
     path: '/thunk',

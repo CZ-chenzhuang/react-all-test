@@ -38,6 +38,7 @@ console.log(store.getState());
 
 
 const Index = () => {
+
   const { reducer1: {num: storenum1}, reducer2: {num: storenum2} } = store.getState()
   const [num1, setNum1] = useState(storenum1)
   const [num2, setNum2] = useState(storenum2)

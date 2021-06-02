@@ -1,5 +1,5 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+import { Provider } from './store/react-redux';
 import store from './store';
 // import List from './components/hoc/Hoc3'
 // import Index from './components/event/index'

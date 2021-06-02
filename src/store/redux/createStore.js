@@ -3,7 +3,7 @@
  * 
  */
 function createStore(reducer, state) {
-  let currentState = {};
+  let currentState;
   let listenders = [];
 
   function dispatch(action) {
@@ -27,7 +27,7 @@ function createStore(reducer, state) {
   }
 
   /**
-   * 创建store时，先执行一次dispatch
+   * 创建store时，先执行一次dispatch，去执行reducer初始化一下store的state
    */
   dispatch({type: '@@'})
 
