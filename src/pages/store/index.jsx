@@ -33,8 +33,8 @@ const reducer = combineReducers({
 })
 
 const store = createStore(reducer)
-console.log(store, 'store');
-console.log(store.getState());
+// console.log(store, 'store');
+// console.log(store.getState());
 
 
 const Index = () => {

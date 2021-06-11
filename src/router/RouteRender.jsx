@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, BrowserRouter, Route, Switch, Link, Redirect } from 'react-router-dom'
+import { Route, Switch, Link, Redirect } from 'react-router-dom'
 
 const RoutesRender = (props) => {
   const initRoutes = () => {
@@ -10,7 +10,8 @@ const RoutesRender = (props) => {
 
     const router = routes.map(route => {
       return (
-        <Route 
+        <Route
+          key={route.path}
           render={(rest) => {
             const { component: Component } = route;
             return <Component {...rest}/>

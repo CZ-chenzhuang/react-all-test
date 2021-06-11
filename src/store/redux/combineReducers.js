@@ -11,7 +11,6 @@ function combineReducers(reducers) {
    * 
    */
   return function(state = {}, action) {
-    debugger
     // nextState: 最后返回执行完所有分reducer的最新state
     let nextState = {};
     for(let key in reducers) {

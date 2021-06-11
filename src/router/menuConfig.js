@@ -4,6 +4,7 @@ import My from './pages/My';
 import Thunk from '../pages/thunk';
 import Saga from '../pages/saga';
 import Store from '../pages/store';
+import ApplyMiddleWare from '../pages/applyMiddleware';
 
 const routes = [
   {
@@ -29,6 +30,12 @@ const routes = [
     name: 'store',
     exact: true,
     component: Store
+  },
+  {
+    path: '/applyMiddleWare',
+    name: 'applyMiddleWare',
+    exact: true,
+    component: ApplyMiddleWare
   }
 ]
 
